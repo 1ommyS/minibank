@@ -1,6 +1,8 @@
+import application.services.AccountService;
 import application.services.UserService;
+import domain.User;
 import infrastructure.db.Database;
-import lib.ArrayListCustom;
+import util.Menu;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,49 +27,44 @@ public class Main {
         array.add(1, 15);
         System.out.println(array);*/
 
-        Database db = new Database();
-        UserService userService = new UserService(db);
 
         System.out.println("Выберите пункт из меню:");
         System.out.println("1. Добавить пользователя");
         System.out.println("2. Получить список всех пользователей");
+        System.out.println("3. Создать счет");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
-            String input = reader.readLine();
 
-            switch (input) {
-                case "1": {
+            String input;
+            do {
+                input = reader.readLine();
 
-                    System.out.println("Введите имя");
-                    System.out.println("Введите возраст");
-                    System.out.println("Введите номер телефона");
-                    System.out.println("Введите адрес");
-                    System.out.println("Введите номер паспорта");
-                    System.out.println("Введите электронную почту ");
-
-                    String name = reader.readLine();
-
-                    int age = Integer.parseInt(reader.readLine());
-                    System.out.println(age);
-                    String phoneNumber = reader.readLine();
-                    String address = reader.readLine();
-                    String passportNumber = reader.readLine();
-                    String email = reader.readLine();
-
-                    userService.createUser(name, age, phoneNumber, address, passportNumber, email);
-
-
-                    // создавать пользователя
-                    break;
+                switch (input) {
+                    case "1": {
+                        Menu.createUser(reader);
+                        break;
+                    }
+                    case "2": {
+//                        Menu.printUsers();
+                        break;
+                    }
+                    case "3": {
+                        Menu.createAccount(reader);
+                        break;
+                    }
+                    default: {
+                        System.out.println("неверная команда");
+                    }
                 }
-                case "2": {
-                    userService.printUsers();
-                    break;
-                }
-                default: {
-                    System.out.println("неверная команда");
-                }
+                System.out.println("Выберите пункт из меню:");
+                System.out.println("1. Добавить пользователя");
+                System.out.println("2. Получить список всех пользователей");
+                System.out.println("3. Создать счет");
+            } while (input != "-1");
+
+            if (input == "-1") {
+                System.out.println("Работа программы успешно завершена");
             }
 
           /*  if (input.equals("1")) {
@@ -96,4 +93,6 @@ public class Main {
         userService.printUsers();*/
 
     }
+
+
 }

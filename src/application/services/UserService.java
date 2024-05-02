@@ -28,7 +28,29 @@ public class UserService {
         database.printUsers();
     }
 
+    public boolean isUserExists(String fullName) {
+        /*
+        1) сходить в базу данных, найти пользователя и посмотреть null ли он
+        2) вызвать метод isUserExists у бд
+         */
+
+        return database.isUserExists(fullName);
+    }
+
     public void getUserInfo(String fullName) {
 
+    }
+
+    public boolean isUserRecenzentHisCountry(String userFullName, String userCountryRecenzent) {
+        User user = database.getUser(userFullName);
+
+        String address = user.getAddress().toLowerCase();
+
+
+        return address.contains(userCountryRecenzent.toLowerCase());
+    }
+
+    public User getUser(String userFullName) {
+        return database.getUser(userFullName);
     }
 }

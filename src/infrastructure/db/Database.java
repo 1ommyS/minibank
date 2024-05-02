@@ -17,6 +17,10 @@ public class Database {
         transactions = new ArrayListCustom<>(1000);
     }
 
+    public void addAccount(Account account) {
+        accounts.add(account);
+    }
+
     public void addUser(User user) {
         /*for (User u : users) */
 
@@ -37,5 +41,47 @@ public class Database {
         for (int i = 0; i < users.getSize(); i++) {
             System.out.println(users.get(i));
         }
+    }
+
+    public User getUser(String fullName) throws IllegalArgumentException {
+        for (int i = 0; i < users.getSize(); i++) {
+            if (users
+                    .get(i)
+                    .getFullName()
+                    .equals(fullName)
+            ) {
+                return users.get(i);
+            }
+        }
+
+        throw new IllegalArgumentException("Такого пользователя не существует");
+    }
+
+    public boolean isUserExists(String fullName) {
+        for (int i = 0; i < users.getSize(); i++) {
+            if (users
+                    .get(i)
+                    .getFullName()
+                    .equals(fullName)
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean hasUserAnAccount(User user) {
+        for (int i = 0; i < accounts.getSize(); i++) {
+            if (
+                    accounts
+                            .get(i)
+                            .getOwner()
+                            .equals(user)
+            ) {
+                return true;
+            }
+        }
+        return false;
     }
 }
