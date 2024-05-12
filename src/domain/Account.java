@@ -1,6 +1,8 @@
 package domain;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     private User owner;
     private int balance;
     private boolean isActive;

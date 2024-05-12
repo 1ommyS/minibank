@@ -46,7 +46,6 @@ public class UserService {
 
         String address = user.getAddress().toLowerCase();
 
-
         return address.contains(userCountryRecenzent.toLowerCase());
     }
 

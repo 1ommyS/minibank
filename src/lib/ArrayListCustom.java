@@ -1,6 +1,10 @@
 package lib;
 
-public class ArrayListCustom<Type> {
+import java.io.Serializable;
+import java.util.Iterator;
+
+public class ArrayListCustom<Type> implements Serializable {
+
     private Type[] elements;
     private int size; // реальный
     private int capacity; // максимальный
@@ -86,4 +90,6 @@ public class ArrayListCustom<Type> {
 
         return -1;
     }
+
+
 }
